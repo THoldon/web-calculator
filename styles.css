@@ -9,30 +9,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 520px;
+    width: 480px;
     height: 150px;
     border: 1px;
+    border-bottom: 0px;
     border-style: solid;
     border-color: black;
-    margin-bottom: 10px;
+    padding: 20px;
+    background-color: rgb(190, 189, 189);
     margin-top: 20px;
 }
 
 #topDisplay,#botDisplay{
     display: flex;
     justify-content: center;
-    border:1px;
     margin: 10px;
-    border-style:solid;
-    border-color:black;
 }
 
 #topDisplay{
-    height: 50px;
+    height: 30px;
 }
 
 #botDisplay{
-    height: 100px;
+    height: 90px;
 }
 
 
@@ -40,7 +39,11 @@
     display: grid;
     grid-template-columns: repeat(5,100px);
     grid-template-rows: repeat(4,100px);   
+    background-color: rgb(190, 189, 189);
     gap: 5px;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
 }
 
 #equal{
@@ -56,6 +59,7 @@ button{
     background-color: grey;
     color: white;
     font-size: 20px;
+    border-style: hidden;
 }
 
 button:hover{
