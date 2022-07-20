@@ -2,9 +2,14 @@ const digits = document.querySelectorAll(".number");
 const operator = document.querySelectorAll(".operator");
 const topDisplay = document.querySelector("#topDisplay");
 const botDisplay = document.querySelector("#botDisplay");
+const dot = document.querySelector("#dot");
+const neg = document.querySelector("#neg");
+
+
 var num1 = 0;
 var num2 = 0;
 var sign = "";
+var negative = false;
 
 function handleClick(){ //clicking calculator
     digits.forEach(e =>{
@@ -14,8 +19,10 @@ function handleClick(){ //clicking calculator
     })
 
     operator.forEach(e =>{ //operators
-        e.addEventListener("click", () => operatorRules(e))
+        e.addEventListener("click", () => operatorRules(e));
     })
+
+    dot.addEventListener("click", () => addDecimal());
 }
 handleClick();
 
@@ -23,10 +30,13 @@ function handleKeyboard(){ //using keyboard
     document.addEventListener('keydown', ()=>{
         if(event.key>=0 && event.key<=9) //numbers
             appendNumberBot(event.key);
-        if(event.key == "+" || event.key == "-" || event.key == "/" ||event.key == "*" || event.key == "Enter")
+        if(event.key == "+" || event.key == "-" || event.key == "/" ||event.key == "*" || event.key == "Enter") //operators
         {
-            console.log(event.key);
             operatorRules(event.key);
+        }
+        if(event.key == ".")
+        {
+            addDecimal();
         }
 
     })
@@ -38,7 +48,7 @@ function operatorRules(e){
         if(e.innerText == "=" || e == "Enter")
             return null;
         sign = e.innerText;
-        if(sign == undefined)
+        if(sign == undefined) //if keyboard is used
             sign = e;
         appendNumberBot(sign);
     }
@@ -60,6 +70,20 @@ function operatorRules(e){
 
 function appendNumberBot(num){ //work the bottom display
     botDisplay.innerHTML+=num;
+}
+
+function addDecimal(){
+    const numbers = botDisplay.innerHTML.split(/[*]|[+]|[-]|[\/]/);
+    if(sign == "" && !numbers[0].includes("."))
+    {
+        appendNumberBot(".");
+        return null;
+    }
+    if(!numbers[1].includes("."))
+    {
+        appendNumberBot(".");
+        return null;
+    }
 }
 
 function roundThreeDP(num){ //keep it to 3dp
