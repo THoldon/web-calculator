@@ -61,9 +61,14 @@ function operatorRules(e){
     }
     else{ //inputting multiple signs instead of equal continues the equation
         const numbers = botDisplay.innerHTML.split(/[*]|[+]|[-]|[\/]/);
+        console.log(numbers);
+        if(numbers[1]=='') //cannot input multiple signs e.g 25++
+            return null;
         equate(sign,numbers[0], numbers[1]);
         sign = e.innerText;
-        appendNumberBot(e.innerText);
+        if(sign == undefined) //if keyboard is used
+            sign = e;
+        appendNumberBot(sign);
     }
     
 }
