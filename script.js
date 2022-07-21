@@ -93,11 +93,11 @@ function appendNumberBot(num){ //work the bottom display
 
 function addDecimal(){
     const numbers = botDisplay.innerHTML.split(/[*]|[+]|[-]|[\/]/);
-    if(sign == "" && !numbers[0].includes("."))
+    if(sign == "" && !numbers[0].includes(".")) //allow only 1 decimal point to be placed
     {
         appendNumberBot(".");
     }
-    if(!numbers[1].includes("."))
+    if(!numbers[1].includes(".")) //same for num2
     {
         appendNumberBot(".");
     }
@@ -105,11 +105,11 @@ function addDecimal(){
 
 function addNegative(){
     const numbers = botDisplay.innerHTML.split(/[*]|[+]|[-]|[\/]/);
-    if(sign == "" && !numbers[0].includes("~"))
+    if(sign == "" && !numbers[0].includes("~")) //allow only 1 negative sign to be placed
     {
         botDisplay.innerHTML = "~" + botDisplay.innerHTML;
     }
-    if(!numbers[1].includes("~"))
+    if(!numbers[1].includes("~")) //same for num2
     {
         botDisplay.innerHTML = botDisplay.innerHTML.replace('+','+~')
         botDisplay.innerHTML = botDisplay.innerHTML.replace('-','-~')
@@ -119,7 +119,7 @@ function addNegative(){
 
 }
 
-function clearCalc(){
+function clearCalc(){ //reset calculator
     sign = '';
     topDisplay.innerHTML = "";
     botDisplay.innerHTML = "";
@@ -147,9 +147,9 @@ function equate(sign,num1,num2){ //work the top display
     {
         result = roundThreeDP(result)
         if(result<0)
-            botDisplay.innerHTML = "~" + -result;
+            botDisplay.innerHTML = "~" + -result; //represent negative numbers with ~
         else
-            botDisplay.innerHTML = result;
+            botDisplay.innerHTML = result; //positive numbers
     }
 }
 
